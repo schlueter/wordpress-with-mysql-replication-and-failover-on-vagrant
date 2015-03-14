@@ -18,5 +18,5 @@ Metrics/LineLength:
   Max: 100
 
 # I Started with python, so prefer this:
-SpaceAroundEqualsInParameterDefault:
+Style/SpaceAroundEqualsInParameterDefault:
   EnforcedStyle: no_space
