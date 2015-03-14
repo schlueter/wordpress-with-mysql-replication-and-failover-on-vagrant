@@ -30,11 +30,27 @@ assume the 'sql1' box is the master. Any other line is ignored.
 
   EOF
 
+  IP_ADDRESSES = {
+    database_1: '192.168.10.11',
+    database_2: '192.168.10.12',
+    webserver: '192.168.10.13'
+  }
+
   config.vm.box = 'ubuntu/trusty64'
   config.vm.define 'web' do |web|
-    web.vm.network :private_network, ip: '192.168.10.10'
+    web.vm.network :private_network, ip: IP_ADDRESSES['webserver']
 
-    web.vm.provision :chef_solo do |_|
+    web.vm.provision :chef_solo do |chef|
+      chef.run_list = %w(failover-wordpress::wordpress)
+      chef.json = {
+        failover_wordpress: {
+          database: {
+            master: {
+              host: IP_ADDRESSES['database_1']
+            }
+          }
+        }
+      }
     end
   end
 
@@ -50,7 +66,7 @@ assume the 'sql1' box is the master. Any other line is ignored.
 
   def sql1(config, failover=false, master=true)
     config.vm.define 'sql1' do |sql|
-      sql.vm.network :private_network, ip: '192.168.10.11'
+      sql.vm.network :private_network, ip: IP_ADDRESSES['database_1']
 
       if failover
         failover_provision(sql, master)
@@ -63,7 +79,7 @@ assume the 'sql1' box is the master. Any other line is ignored.
 
   def sql2(config, failover=false, master=false)
     config.vm.define 'sql2' do |sql|
-      sql.vm.network :private_network, ip: '192.168.10.12'
+      sql.vm.network :private_network, ip: IP_ADDRESSES['database_2']
 
       if failover
         failover_provision(sql, master)
@@ -83,7 +99,7 @@ assume the 'sql1' box is the master. Any other line is ignored.
         master = line.split('=')[1] if line.start_with? 'master='
       end
     rescue Errno::ENOENT
-      puts 'No .failover file found. Using sql1 as current master'
+      puts 'No .failover file found. Assuming sql1 is current master'
     end
 
     # Default to sql1
