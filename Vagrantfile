@@ -1,8 +1,10 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+##
 #    This Vagrantfile provisions a web server hosting wordpress served
 #    using Nginx and a master slave configuration of percona sql servers.
+#
 #    Copyright (C) 2015 Brandon Schlueter
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -17,6 +19,7 @@
 #
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+##
 
 Vagrant.configure(2) do |config|
   FAILOVER_FILE_PREFIX = <<-EOF
