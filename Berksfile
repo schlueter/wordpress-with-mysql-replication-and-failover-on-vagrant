@@ -15,5 +15,4 @@
 
 source 'https://supermarket.getchef.com'
 
-# cookbook 'failover-wordpress', git: 'git@github.com:schlueter/failover-wordpress-cookbook.git'
 cookbook 'failover-wordpress', github: 'schlueter/failover-wordpress-cookbook'
