@@ -24,6 +24,9 @@ CHEF_JSON:
         master:
           host: *database_1_ip
           root_password: *sql_master_root_pass
+      wordpress:
+        webserver:
+          host: *webserver_ip
   web:
     failover_wordpress:
       database:
