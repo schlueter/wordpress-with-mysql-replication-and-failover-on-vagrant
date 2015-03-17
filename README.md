@@ -5,7 +5,6 @@ This project is an example of a [Wordpress][] site using a replicated database w
 ## Dependencies
 
 - [Chef Development Kit][]
-[INVESTIGATE]: # (The space after 'Vagrant' below)
 - [Vagrant][]
 - [Vagrant Omnibus][], obtainable by `vagrant plugin install vagrant-omnibus`
 - [Vagrant Berkshelf][], obtainable by `vagrant plugin install vagrant-berkshelf`
