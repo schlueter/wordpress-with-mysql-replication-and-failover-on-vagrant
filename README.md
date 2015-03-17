@@ -1,18 +1,18 @@
 # Wordpress using a Replicated database with easy fail over
 
-This project is an example of a [Wordpress][1] site using a replicated database with single command fail over. This implementation runs [Virtual box][2] servers hosted via [Vagrant][3]. The default database is [MySQL][4] and Wordpress is served by [Nginx][5].
+This project is an example of a [Wordpress][] site using a replicated database with single command fail over. This implementation runs [Virtual box][] servers hosted via [Vagrant][]. The default database is [MySQL][] and Wordpress is served by [Nginx][].
 
 ## Dependencies
 
-- [Chef Development Kit][6]
+- [Chef Development Kit][]
 [INVESTIGATE]: # (The space after 'Vagrant' below)
-- [Vagrant ][3]
-- [Vagrant Omnibus][7], obtainable by `vagrant plugin install vagrant-omnibus`
-- [Vagrant Berkshelf][9], obtainable by `vagrant plugin install vagrant-berkshelf`
+- [Vagrant][]
+- [Vagrant Omnibus][], obtainable by `vagrant plugin install vagrant-omnibus`
+- [Vagrant Berkshelf][], obtainable by `vagrant plugin install vagrant-berkshelf`
 
 ### Optional
 
-- [Vagrant Cachier][8], obtainable by `vagrant plugin install vagrant-cachier`
+- [Vagrant Cachier][], obtainable by `vagrant plugin install vagrant-cachier`
 
 ## Usage
 
@@ -36,13 +36,12 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
-[1]: https://wordpress.org/
-[2]: https://www.virtualbox.org/
-[3]: https://www.vagrantup.com/
-[4]: http://www.mysql.org/
-[5]: http://nginx.org/
-[6]: https://downloads.chef.io/chef-dk/
-[7]: https://github.com/chef/vagrant-omnibus
-[8]: http://fgrehm.viewdocs.io/vagrant-cachier
-[9]: https://github.com/berkshelf/vagrant-berkshelf
+[Wordpress]: https://wordpress.org/
+[Virtual box]: https://www.virtualbox.org/
+[Vagrant]: https://www.vagrantup.com/
+[MySQL]: http://www.mysql.org/
+[Nginx]: http://nginx.org/
+[Chef Development Kit]: https://downloads.chef.io/chef-dk/
+[Vagrant Omnibus]: https://github.com/chef/vagrant-omnibus
+[Vagrant Cachier]: http://fgrehm.viewdocs.io/vagrant-cachier
+[Vagrant Berkshelf]: https://github.com/berkshelf/vagrant-berkshelf
