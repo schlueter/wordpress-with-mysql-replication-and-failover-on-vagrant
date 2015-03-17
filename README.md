@@ -8,6 +8,7 @@ This project is an example of a [Wordpress][1] site using a replicated database 
 [INVESTIGATE]: # (The space after 'Vagrant' below)
 - [Vagrant ][3]
 - [Vagrant Omnibus][7], obtainable by `vagrant plugin install vagrant-omnibus`
+- [Vagrant Berkshelf][9], obtainable by `vagrant plugin install vagrant-berkshelf`
 
 ### Optional
 
@@ -44,3 +45,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 [6]: https://downloads.chef.io/chef-dk/
 [7]: https://github.com/chef/vagrant-omnibus
 [8]: http://fgrehm.viewdocs.io/vagrant-cachier
+[9]: https://github.com/berkshelf/vagrant-berkshelf
