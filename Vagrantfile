@@ -34,13 +34,13 @@ Vagrant.configure(2) do |config|
 
   def sql1(config, failover=false, master=true)
     config.vm.define 'sql1' do |sql|
-      sql.vm.network :private_network, ip: CONFIGURATION['IP_ADDRESSES']['database_1']
+      sql.vm.network :private_network, ip: CONFIGURATION['IP_ADDRESSES']['sql1']
 
       if failover
         failover_provision(sql, master)
       else
         sql.vm.provision :chef_solo do |chef|
-          chef.run_list = %w(failover-wordpress::database_master)
+          chef.run_list = %w(failover-wordpress::database)
           chef.json = CONFIGURATION['CHEF_JSON']['sql1']
         end
       end
@@ -49,13 +49,13 @@ Vagrant.configure(2) do |config|
 
   def sql2(config, failover=false, master=false)
     config.vm.define 'sql2' do |sql|
-      sql.vm.network :private_network, ip: CONFIGURATION['IP_ADDRESSES']['database_2']
+      sql.vm.network :private_network, ip: CONFIGURATION['IP_ADDRESSES']['sql2']
 
       if failover
         failover_provision(sql, master)
       else
         sql.vm.provision :chef_solo do |chef|
-          chef.run_list = %w(failover-wordpress::database_slave)
+          chef.run_list = %w(failover-wordpress::database)
           chef.json = CONFIGURATION['CHEF_JSON']['sql2']
         end
       end
@@ -111,7 +111,7 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.define 'web' do |web|
-    web.vm.network :private_network, ip: CONFIGURATION['IP_ADDRESSES']['webserver']
+    web.vm.network :private_network, ip: CONFIGURATION['IP_ADDRESSES']['web']
 
     web.vm.network 'forwarded_port', guest: 80, host: 8080
 

@@ -7,9 +7,9 @@ FAILOVER_FILE_PREFIX: |
   assume the 'sql1' box is the master. Any other line is ignored.
 
 IP_ADDRESSES:
-  database_1: &database_1_ip 192.168.10.11
-  database_2: &database_2_ip 192.168.10.12
-  webserver: &webserver_ip 192.168.10.13
+  sql1: &sql1_ip 192.168.10.11
+  sql2: &sql2_ip 192.168.10.12
+  web: &web_ip 192.168.10.13
 
 PASSWORDS:
   sql_master: &sql_master_pass badpassword_master
@@ -21,31 +21,31 @@ CHEF_JSON:
   sql1:
     failover_wordpress:
       database:
+        host: *sql1_ip
+        root_password: *sql_master_root_pass
         server: &database_server mysql
-        master:
-          host: *database_1_ip
-          root_password: *sql_master_root_pass
-        slave:
-          host: *database_2_ip
-      webserver:
-        host: *webserver_ip
+        server_id: 1
+        slave_host: *sql2_ip
+      web:
+        host: *web_ip
   sql2:
     failover_wordpress:
       database:
+        host: *sql2_ip
+        web: *sql1_ip
+        root_password: *sql_slave_root_pass
         server: *database_server
-        master:
-          host: *database_1_ip
-        slave:
-          host: *database_2_ip
-          root_password: *sql_slave_root_pass
+        server_id: 2
+        slave_host: *sql1_ip
+      webserver:
+        host: *web_ip
   web:
     failover_wordpress:
       database:
-        master:
-          host: *database_1_ip
-          root_password: *sql_master_root_pass
+        host: *sql1_ip
+        root_password: *sql_master_root_pass
     wordpress:
       server_aliases:
-        - *webserver_ip
+        - *web_ip
         - 127.0.0.1
         - localhost
