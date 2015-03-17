@@ -54,7 +54,9 @@ Vagrant.configure(2) do |config|
       if failover
         failover_provision(sql, master)
       else
-        sql.vm.provision :chef_solo do |_|
+        sql.vm.provision :chef_solo do |chef|
+          chef.run_list = %w(failover-wordpress::database_slave)
+          chef.json = CONFIGURATION['CHEF_JSON']['sql2']
         end
       end
     end

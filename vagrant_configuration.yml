@@ -15,17 +15,29 @@ PASSWORDS:
   sql_master: &sql_master_pass badpassword_master
   sql_master_root: &sql_master_root_pass badpassword_master_root
   sql_slave: &sql_slave_pass badpassword_slave
+  sql_slave_root: &sql_slave_root_pass badpassword_slave_root
 
 CHEF_JSON:
   sql1:
     failover_wordpress:
       database:
-        server: mysql
+        server: &database_server mysql
         master:
           host: *database_1_ip
           root_password: *sql_master_root_pass
+        slave:
+          host: *database_2_ip
       webserver:
         host: *webserver_ip
+  sql2:
+    failover_wordpress:
+      database:
+        server: *database_server
+        master:
+          host: *database_1_ip
+        slave:
+          host: *database_2_ip
+          root_password: *sql_slave_root_pass
   web:
     failover_wordpress:
       database:
