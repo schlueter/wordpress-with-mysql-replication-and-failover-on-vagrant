@@ -24,7 +24,7 @@
 require 'yaml'
 
 Vagrant.configure(2) do |config|
-  CONFIGURATION = YAML.load_file('vagrant_configuration.yml')
+  CONFIGURATION = YAML.load_file(File.join(File.dirname(__FILE__), 'vagrant_configuration.yml'))
 
   if Vagrant.has_plugin?('vagrant-cachier')
     config.cache.scope = :box
