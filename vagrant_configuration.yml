@@ -32,12 +32,12 @@ CHEF_JSON:
     failover_wordpress:
       database:
         host: *sql2_ip
-        web: *sql1_ip
+        master_host: *sql1_ip
         root_password: *sql_slave_root_pass
         server: *database_server
         server_id: 2
         slave_host: *sql1_ip
-      webserver:
+      web:
         host: *web_ip
   web:
     failover_wordpress:
